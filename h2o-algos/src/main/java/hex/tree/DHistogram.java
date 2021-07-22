@@ -271,10 +271,18 @@ public final class DHistogram extends Iced {
     } else {
       idx1 = (int) pos;
     }
+    if(_splitPts == null) {
+      float splitAt = (float) ((binAt(idx1) + binAt(idx1 + 2)) / 2.0);
+      if (col_data >= splitAt) {
+        idx1++;
+      }
+    }
     if (idx1 == _nbin) idx1--; // Roundoff error allows idx1 to hit upper bound, so truncate
     assert 0 <= idx1 && idx1 < _nbin : idx1 + " " + _nbin;
     return idx1;
   }
+  
+  
   public double binAt( int b ) {
     if (_hasQuantiles) return _splitPts[b];
     return _min + (_splitPts == null ? b : _splitPts[b]) / _step;
