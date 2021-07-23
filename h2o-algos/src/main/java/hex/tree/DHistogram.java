@@ -271,7 +271,7 @@ public final class DHistogram extends Iced {
     } else {
       idx1 = (int) pos;
     }
-    if(_splitPts == null) {
+    if (_splitPts == null || idx1 + 2 < _splitPts.length) {
       float splitAt = (float) ((binAt(idx1) + binAt(idx1 + 2)) / 2.0);
       if (col_data >= splitAt) {
         idx1++;
