@@ -1653,7 +1653,7 @@ public class DRFTest extends TestUtil {
         parms._ntrees = 10;
         parms._score_tree_interval = parms._ntrees;
         parms._max_depth = 10;
-        parms._seed = 12345;
+        parms._seed = 123456;
         parms._nbins = 20;
         parms._nbins_top_level = 20;
 

@@ -124,9 +124,9 @@ public class HistogramTest extends TestUtil {
       if (histoType == SharedTreeModel.SharedTreeParameters.HistogramType.QuantilesGlobal) {
         splitPts = new double[]{1,1.5,2,2.5,3,4,5,6.1,6.2,6.3,6.7,6.8,6.85};
       }
-      Key k = Key.make();
-      DKV.put(new DHistogram.HistoQuantiles(k,splitPts));
-      DHistogram hist = new DHistogram("myhisto",nbins,nbins_cats,isInt,min,maxEx,false,0,histoType,seed,k,null);
+      DHistogram.HistoQuantiles hq = new DHistogram.HistoQuantiles(Key.make(), splitPts);
+      DKV.put(hq);
+      DHistogram hist = new DHistogram("myhisto",nbins,nbins_cats,isInt,min,maxEx,false,0,histoType,seed,hq._key,null);
       hist.init();
       int N=10000000;
       int bin=-1;
@@ -146,11 +146,13 @@ public class HistogramTest extends TestUtil {
         Log.info("Histogram maps bin " + i + " to col_data: " + col_data);
         l2[i] = col_data;
       }
-
-      for (int i=0;i<nbins;++i) {
-        Assert.assertTrue(Math.abs(l1[i]-l2[i]) < 1e-6);
+      
+      try {
+        Assert.assertArrayEquals(
+                "Histograms should match (type=" + histoType + ", seed=" + seed + ")", l1, l2, 1e-6);
+      } finally {
+        hq.remove();
       }
-      k.remove();
     }
   }
   @Test public void testUniformAdaptiveRange() {

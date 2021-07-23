@@ -189,7 +189,7 @@ public final class DHistogram extends Iced {
       super("column=" + name + " leads to invalid histogram(check numeric range) -> [max=" + maxEx + ", min = " + min + "], step= " + step + ", xbin= " + xbins);
     }
   }
-  public DHistogram(String name, final int nbins, int nbins_cats, byte isInt, double min, double maxEx, boolean initNA,
+  DHistogram(String name, final int nbins, int nbins_cats, byte isInt, double min, double maxEx, boolean initNA,
                     double minSplitImprovement, SharedTreeModel.SharedTreeParameters.HistogramType histogramType, long seed, Key globalQuantilesKey,
                     Constraints cs) {
     assert nbins >= 1;
@@ -272,12 +272,12 @@ public final class DHistogram extends Iced {
       idx1 = (int) pos;
     }
     if (_splitPts == null || idx1 + 2 < _splitPts.length) {
-      float splitAt = (float) ((binAt(idx1) + binAt(idx1 + 2)) / 2.0);
+      float splitAt = (float) binAt(idx1 + 1);
       if (col_data >= splitAt) {
         idx1++;
       }
     }
-    if (idx1 == _nbin) idx1--; // Roundoff error allows idx1 to hit upper bound, so truncate
+    if (idx1 == _nbin) idx1--; // Round-off error allows idx1 to hit upper bound, so truncate
     assert 0 <= idx1 && idx1 < _nbin : idx1 + " " + _nbin;
     return idx1;
   }
