@@ -12,6 +12,7 @@ import hex.schemas.GBMV3;
 import hex.schemas.GLMV3;
 import hex.tree.drf.DRFModel;
 import hex.tree.gbm.GBMModel;
+import hex.tree.xgboost.XGBoostModel;
 import water.DKV;
 import water.Key;
 import water.Scope;
@@ -78,6 +79,7 @@ public class InfoGramUtils {
       case glm : return ((GLMModel) model)._output._variable_importances;
       case deeplearning : return ((DeepLearningModel) model)._output._variable_importances;
       case drf : return ((DRFModel) model)._output._variable_importances;
+      case xgboost : return ((XGBoostModel) model)._output._variable_importances;
       default : return null;
     }
   }

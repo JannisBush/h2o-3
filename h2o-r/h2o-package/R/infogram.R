@@ -61,10 +61,10 @@
 #' @param auc_type Set default multinomial AUC type. Must be one of: "AUTO", "NONE", "MACRO_OVR", "WEIGHTED_OVR", "MACRO_OVO",
 #'        "WEIGHTED_OVO". Defaults to AUTO.
 #' @param infogram_algorithm Machine learning algorithm chosen to build the infogram.  AUTO default to GBM Must be one of: "AUTO",
-#'        "deeplearning", "drf", "gbm", "glm". Defaults to gbm.
+#'        "deeplearning", "drf", "gbm", "glm", "xgboost". Defaults to gbm.
 #' @param infogram_algorithm_params parameters specified to the chosen algorithm can be passed to infogram using algorithm_params
 #' @param model_algorithm Machine learning algorithm chosen to build the final model.  AUTO default to GBM Must be one of: "AUTO",
-#'        "deeplearning", "drf", "gbm", "glm". Defaults to gbm.
+#'        "deeplearning", "drf", "gbm", "glm", "xgboost". Defaults to gbm.
 #' @param model_algorithm_params parameters specified to the chosen final algorithm
 #' @param sensitive_attributes predictors that are to be excluded from model due to them being discriminatory or inappropriate for whatever
 #'        reason.
@@ -119,9 +119,9 @@ h2o.infogram <- function(x,
                          max_runtime_secs = 0,
                          custom_metric_func = NULL,
                          auc_type = c("AUTO", "NONE", "MACRO_OVR", "WEIGHTED_OVR", "MACRO_OVO", "WEIGHTED_OVO"),
-                         infogram_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm"),
+                         infogram_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm", "xgboost"),
                          infogram_algorithm_params = NULL,
-                         model_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm"),
+                         model_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm", "xgboost"),
                          model_algorithm_params = NULL,
                          sensitive_attributes = NULL,
                          conditional_info_threshold = 0.1,
@@ -292,9 +292,9 @@ h2o.infogram <- function(x,
                                          max_runtime_secs = 0,
                                          custom_metric_func = NULL,
                                          auc_type = c("AUTO", "NONE", "MACRO_OVR", "WEIGHTED_OVR", "MACRO_OVO", "WEIGHTED_OVO"),
-                                         infogram_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm"),
+                                         infogram_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm", "xgboost"),
                                          infogram_algorithm_params = NULL,
-                                         model_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm"),
+                                         model_algorithm = c("AUTO", "deeplearning", "drf", "gbm", "glm", "xgboost"),
                                          model_algorithm_params = NULL,
                                          sensitive_attributes = NULL,
                                          conditional_info_threshold = 0.1,

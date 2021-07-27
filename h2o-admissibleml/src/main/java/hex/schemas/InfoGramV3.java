@@ -104,7 +104,8 @@ public class InfoGramV3 extends ModelBuilderSchema<InfoGram, InfoGramV3, InfoGra
     public int max_confusion_matrix_size;
 
     @API(help = "Machine learning algorithm chosen to build the infogram.  AUTO default to GBM", values={"AUTO",
-            "deeplearning", "drf", "gbm", "glm"}, level = API.Level.expert, direction = API.Direction.INOUT, gridable=true)
+            "deeplearning", "drf", "gbm", "glm", "xgboost"}, level = API.Level.expert, 
+            direction = API.Direction.INOUT, gridable=true)
     public InfoGramModel.InfoGramParameter.Algorithm infogram_algorithm;
 
     @API(help = "parameters specified to the chosen algorithm can be passed to infogram using algorithm_params",
@@ -112,7 +113,8 @@ public class InfoGramV3 extends ModelBuilderSchema<InfoGram, InfoGramV3, InfoGra
     public String infogram_algorithm_params;
 
     @API(help = "Machine learning algorithm chosen to build the final model.  AUTO default to GBM", values={"AUTO",
-            "deeplearning", "drf", "gbm", "glm"}, level = API.Level.critical, direction = API.Direction.INOUT, gridable=true)
+            "deeplearning", "drf", "gbm", "glm", "xgboost"}, level = API.Level.critical, 
+            direction = API.Direction.INOUT, gridable=true)
     public InfoGramModel.InfoGramParameter.Algorithm model_algorithm;
 
     @API(help = "parameters specified to the chosen final algorithm", level = API.Level.secondary, gridable=true)

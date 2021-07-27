@@ -57,9 +57,9 @@ class H2OInfoGramEstimator(H2OEstimator):
                  max_runtime_secs=0.0,  # type: float
                  custom_metric_func=None,  # type: Optional[str]
                  auc_type="auto",  # type: Literal["auto", "none", "macro_ovr", "weighted_ovr", "macro_ovo", "weighted_ovo"]
-                 infogram_algorithm="gbm",  # type: Literal["auto", "deeplearning", "drf", "gbm", "glm"]
+                 infogram_algorithm="gbm",  # type: Literal["auto", "deeplearning", "drf", "gbm", "glm", "xgboost"]
                  infogram_algorithm_params=None,  # type: Optional[dict]
-                 model_algorithm="gbm",  # type: Literal["auto", "deeplearning", "drf", "gbm", "glm"]
+                 model_algorithm="gbm",  # type: Literal["auto", "deeplearning", "drf", "gbm", "glm", "xgboost"]
                  model_algorithm_params=None,  # type: Optional[dict]
                  sensitive_attributes=None,  # type: Optional[List[str]]
                  conditional_info_threshold=0.1,  # type: float
@@ -173,14 +173,14 @@ class H2OInfoGramEstimator(H2OEstimator):
         :type auc_type: Literal["auto", "none", "macro_ovr", "weighted_ovr", "macro_ovo", "weighted_ovo"]
         :param infogram_algorithm: Machine learning algorithm chosen to build the infogram.  AUTO default to GBM
                Defaults to ``"gbm"``.
-        :type infogram_algorithm: Literal["auto", "deeplearning", "drf", "gbm", "glm"]
+        :type infogram_algorithm: Literal["auto", "deeplearning", "drf", "gbm", "glm", "xgboost"]
         :param infogram_algorithm_params: parameters specified to the chosen algorithm can be passed to infogram using
                algorithm_params
                Defaults to ``None``.
         :type infogram_algorithm_params: dict, optional
         :param model_algorithm: Machine learning algorithm chosen to build the final model.  AUTO default to GBM
                Defaults to ``"gbm"``.
-        :type model_algorithm: Literal["auto", "deeplearning", "drf", "gbm", "glm"]
+        :type model_algorithm: Literal["auto", "deeplearning", "drf", "gbm", "glm", "xgboost"]
         :param model_algorithm_params: parameters specified to the chosen final algorithm
                Defaults to ``None``.
         :type model_algorithm_params: dict, optional
@@ -647,13 +647,13 @@ class H2OInfoGramEstimator(H2OEstimator):
         """
         Machine learning algorithm chosen to build the infogram.  AUTO default to GBM
 
-        Type: ``Literal["auto", "deeplearning", "drf", "gbm", "glm"]``, defaults to ``"gbm"``.
+        Type: ``Literal["auto", "deeplearning", "drf", "gbm", "glm", "xgboost"]``, defaults to ``"gbm"``.
         """
         return self._parms.get("infogram_algorithm")
 
     @infogram_algorithm.setter
     def infogram_algorithm(self, infogram_algorithm):
-        assert_is_type(infogram_algorithm, None, Enum("auto", "deeplearning", "drf", "gbm", "glm"))
+        assert_is_type(infogram_algorithm, None, Enum("auto", "deeplearning", "drf", "gbm", "glm", "xgboost"))
         self._parms["infogram_algorithm"] = infogram_algorithm
 
     @property
@@ -688,13 +688,13 @@ class H2OInfoGramEstimator(H2OEstimator):
         """
         Machine learning algorithm chosen to build the final model.  AUTO default to GBM
 
-        Type: ``Literal["auto", "deeplearning", "drf", "gbm", "glm"]``, defaults to ``"gbm"``.
+        Type: ``Literal["auto", "deeplearning", "drf", "gbm", "glm", "xgboost"]``, defaults to ``"gbm"``.
         """
         return self._parms.get("model_algorithm")
 
     @model_algorithm.setter
     def model_algorithm(self, model_algorithm):
-        assert_is_type(model_algorithm, None, Enum("auto", "deeplearning", "drf", "gbm", "glm"))
+        assert_is_type(model_algorithm, None, Enum("auto", "deeplearning", "drf", "gbm", "glm", "xgboost"))
         self._parms["model_algorithm"] = model_algorithm
 
     @property
