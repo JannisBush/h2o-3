@@ -15,7 +15,7 @@ import water.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotEquals;
+import static hex.tree.SharedTreeModel.SharedTreeParameters.HistogramType;
 import static org.junit.Assert.assertNotNull;
 
 @Ignore
@@ -43,8 +43,9 @@ public class DRFModelValidatingListener implements H2OListenerExtension {
     }
 
     void validateDRFModel(DRFModel model, DRFModel.DRFParameters parms) {
-        assertNotEquals(SharedTreeModel.SharedTreeParameters.HistogramType.AUTO, parms._histogram_type);
-        if (parms._histogram_type != SharedTreeModel.SharedTreeParameters.HistogramType.UniformAdaptive) {
+        HistogramType histoType = parms._histogram_type == HistogramType.AUTO ? 
+                HistogramType.UniformAdaptive : parms._histogram_type; 
+        if (histoType != HistogramType.UniformAdaptive) {
             Log.warn("Not validating models with Histogram type = " + parms._histogram_type);
             return;
         }
