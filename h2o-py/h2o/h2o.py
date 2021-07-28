@@ -2265,7 +2265,7 @@ def import_mojo(mojo_path):
     if mojo_path == None:
         raise TypeError("MOJO path may not be None")
     mojo_estimator = H2OGenericEstimator.from_file(mojo_path)
-    print(mojo_estimator)
+    # print(mojo_estimator)
     return mojo_estimator
 
 
